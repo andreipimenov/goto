@@ -17,7 +17,7 @@ func NewFileConfig(file string) *FileConfig {
 	}
 }
 
-//Get reads config file and return RawConfig.
+//Get reads config file and return Raw data.
 func (c *FileConfig) Get() (*Raw, error) {
 	_, err := os.Stat(c.file)
 	if err != nil {
