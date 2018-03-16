@@ -18,7 +18,7 @@ func main() {
 	}
 
 	//Create configuration driver
-	driver := config.NewFile("config.json")
+	driver := config.NewFileConfig("config.json")
 
 	//Get config data and unmarshal as JSON into defined before structure
 	err := driver.GetJSON(&cfg)

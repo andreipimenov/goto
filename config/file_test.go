@@ -19,7 +19,7 @@ func TestFileConfigGetJSON(t *testing.T) {
 	}{}
 
 	for _, test := range tests {
-		driver := NewFile(fmt.Sprintf("testdata/%s", test.File))
+		driver := NewFileConfig(fmt.Sprintf("testdata/%s", test.File))
 		err := driver.GetJSON(cfg)
 		if (err == nil && test.ExpectedError) || (err != nil && !test.ExpectedError) {
 			t.Errorf("Expected error: %t, received: %v", test.ExpectedError, err)

@@ -5,20 +5,20 @@ import (
 	"os"
 )
 
-//File contains specific configuration filename.
-type File struct {
+//FileConfig contains specific configuration filename.
+type FileConfig struct {
 	file string
 }
 
-//NewFile returns *File.
-func NewFile(file string) *File {
-	return &File{
+//NewFileConfig returns *FileConfig.
+func NewFileConfig(file string) *FileConfig {
+	return &FileConfig{
 		file: file,
 	}
 }
 
 //Get reads config file and return RawConfig.
-func (c *File) Get() (*Raw, error) {
+func (c *FileConfig) Get() (*Raw, error) {
 	_, err := os.Stat(c.file)
 	if err != nil {
 		return nil, err
@@ -31,7 +31,7 @@ func (c *File) Get() (*Raw, error) {
 }
 
 //GetJSON reads config file, unmarshal to value pointed to by v.
-func (c *File) GetJSON(v interface{}) error {
+func (c *FileConfig) GetJSON(v interface{}) error {
 	r, err := c.Get()
 	if err != nil {
 		return err
