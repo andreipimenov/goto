@@ -4,27 +4,27 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/andreipimenov/web/config"
+	"github.com/andreipimenov/goto/config"
 )
 
-//Example of using web/config package for application configuration
-
+// Example of using config package for application configuration.
 func main() {
-	//Default configuration
+	// Default configuration.
 	cfg := struct {
 		Port int `json:"port"`
 	}{
 		Port: 9000,
 	}
 
-	//Create configuration driver
+	// Create configuration driver.
 	driver := config.NewFileConfig("config.json")
 
-	//Get config data and unmarshal as JSON into defined before structure
+	// Get config data and unmarshal as JSON into structure defined before.
 	err := driver.GetJSON(&cfg)
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	// Print configuation.
 	fmt.Printf("Configuration:\n%v\n", cfg)
 }

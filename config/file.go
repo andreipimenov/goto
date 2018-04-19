@@ -5,19 +5,19 @@ import (
 	"os"
 )
 
-//FileConfig contains specific configuration filename.
+// FileConfig contains configuration filename.
 type FileConfig struct {
 	file string
 }
 
-//NewFileConfig returns *FileConfig.
+// NewFileConfig returns pointer to the new FileConfig with given filename.
 func NewFileConfig(file string) *FileConfig {
 	return &FileConfig{
 		file: file,
 	}
 }
 
-//Get reads config file and return Raw data.
+// Get reads config file and return Raw configuration data.
 func (c *FileConfig) Get() (*Raw, error) {
 	_, err := os.Stat(c.file)
 	if err != nil {
@@ -30,11 +30,11 @@ func (c *FileConfig) Get() (*Raw, error) {
 	return &Raw{r}, nil
 }
 
-//GetJSON reads config file, unmarshal to value pointed to by v.
+// GetJSON reads config file, unmarshal to value pointed to by v.
 func (c *FileConfig) GetJSON(v interface{}) error {
 	r, err := c.Get()
 	if err != nil {
 		return err
 	}
-	return r.UnmarshalJSON(v)
+	return r.JSON(v)
 }

@@ -1,3 +1,6 @@
+// Package config implements configuration.
+// This can be useful when your application needs to be configured with some data.
+// Currently supported only json local file for configurtion.
 package config
 
 import (
@@ -5,18 +8,18 @@ import (
 	"errors"
 )
 
-//Configer interface.
+// Configer interface describes method to get configuration data of any type.
 type Configer interface {
 	Get() (*Raw, error)
 }
 
-//Raw contains raw configuration data from any source.
+// Raw contains raw configuration data received from any source.
 type Raw struct {
 	Data interface{}
 }
 
-//UnmarshalJSON unmarshalls Raw.Data as JSON and store it in value pointed to by v.
-func (r *Raw) UnmarshalJSON(v interface{}) error {
+// JSON unmarshalls Raw.Data as JSON and store it in value pointed to by v.
+func (r *Raw) JSON(v interface{}) error {
 	b, ok := r.Data.([]byte)
 	if !ok {
 		return errors.New("error assertion Raw.Data to []byte")
